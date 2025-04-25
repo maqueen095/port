@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Video Editor Portfolio</title>
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: #0e0e0e;
+      color: #fff;
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(to right, #000, #222);
+      padding: 100px 20px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 3rem;
+    }
+    header p {
+      font-size: 1.2rem;
+      color: #bbb;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      background: #ff4b2b;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+    section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 2rem;
+    }
+    .about p {
+      text-align: center;
+      color: #ccc;
+    }
+    .portfolio {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    .video-card {
+      background: #1c1c1c;
+      border-radius: 10px;
+      overflow: hidden;
+      width: 300px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .video-card:hover {
+      transform: scale(1.03);
+    }
+    .video-card img {
+      width: 100%;
+      display: block;
+    }
+    .video-card p {
+      text-align: center;
+      padding: 10px;
+      color: #eee;
+    }
+    form {
+      max-width: 500px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    input, textarea {
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+    button {
+      background: #ff4b2b;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    footer {
+      background: #111;
+      color: #aaa;
+      text-align: center;
+      padding: 20px 0;
+    }
+    /* Video Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.85);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    .modal video {
+      max-width: 90%;
+      border: 3px solid white;
+      border-radius: 10px;
+    }
+    .modal.show {
+      display: flex;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>John Doe</h1>
+    <p>Professional Video Editor & Storyteller</p>
+    <a href="#portfolio" class="btn">See My Work</a>
+  </header>
+
+  <section class="about">
+    <h2>About Me</h2>
+    <p>I specialize in crafting cinematic edits, YouTube content, reels, and short films that captivate audiences and tell meaningful stories.</p>
+  </section>
+
+  <section id="portfolio">
+    <h2>My Work</h2>
+    <div class="portfolio">
+      <div class="video-card" onclick="openModal('https://www.w3schools.com/html/mov_bbb.mp4')">
+        <img src="https://via.placeholder.com/300x180.png?text=Video+1" alt="Video 1">
+        <p>Music Video Edit</p>
+      </div>
+      <div class="video-card" onclick="openModal('https://www.w3schools.com/html/movie.mp4')">
+        <img src="https://via.placeholder.com/300x180.png?text=Video+2" alt="Video 2">
+        <p>Travel Reel</p>
+      </div>
+      <div class="video-card" onclick="openModal('https://www.w3schools.com/html/mov_bbb.mp4')">
+        <img src="https://via.placeholder.com/300x180.png?text=Video+3" alt="Video 3">
+        <p>Product Ad</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <form onsubmit="submitForm(event)">
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <textarea rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    &copy; 2025 John Doe. All rights reserved.
+  </footer>
+
+  <!-- Modal -->
+  <div class="modal" id="videoModal" onclick="closeModal()">
+    <video id="modalVideo" controls autoplay></video>
+  </div>
+
+  <script>
+    function openModal(videoURL) {
+      const modal = document.getElementById('videoModal');
+      const video = document.getElementById('modalVideo');
+      modal.classList.add('show');
+      video.src = videoURL;
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('videoModal');
+      const video = document.getElementById('modalVideo');
+      modal.classList.remove('show');
+      video.pause();
+      video.src = '';
+    }
+
+    function submitForm(e) {
+      e.preventDefault();
+      alert('Thanks! Your message has been sent.');
+    }
+  </script>
+
+</body>
+</html>
